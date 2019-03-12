@@ -1,7 +1,12 @@
 <?php
 
-$conn = new PDO("mysql:dbname=dbphp7;host=localhost","root", "");
+try {
 
+$conn = new PDO("mysql:dbname=dbphp7;host=localhost","root", "admin");
+} catch (PDOEcveption $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
 $stmt = $conn->prepare("SELECT * FROM tb_usuarios ORDER BY deslogin");
 
 $stmt->execute();
